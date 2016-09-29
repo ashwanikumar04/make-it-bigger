@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 
 import in.ashwanik.builditbigger.R;
-import in.ashwanik.retroclient.entities.ErrorData;
 
 /**
  * Created by AshwaniK on 2/28/2016.
@@ -43,22 +42,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void showSnackBar(String message, final View view, String action, View.OnClickListener onClickListener) {
-        if (onClickListener != null && !TextUtils.isEmpty(action)) {
-            Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
-                    .setAction("Retry", onClickListener).show();
-        } else {
-            Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
-                    .setAction("", null).show();
-        }
-    }
-
-
-    public void showSnackBar(ErrorData errorData, final View view) {
-        showSnackBar(errorData, view, null, null);
-    }
-
-    private void showSnackBar(ErrorData errorData, final View view, String action, View.OnClickListener onClickListener) {
-        String message = errorData.getMessage();
         if (onClickListener != null && !TextUtils.isEmpty(action)) {
             Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
                     .setAction("Retry", onClickListener).show();

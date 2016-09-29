@@ -1,8 +1,6 @@
 package in.ashwanik.builditbigger;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v4.util.Pair;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -17,13 +15,16 @@ import in.ashwanik.backend.myApi.MyApi;
  * Created by AshwaniK on 9/29/2016.
  */
 
-public class JokeAsyncTask extends AsyncTask<Pair<Context, TaskHandler>, Void, String> {
+public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
     private static MyApi myApiService = null;
-    private Context context;
     private TaskHandler taskHandler;
 
+    public JokeAsyncTask(TaskHandler taskHandler) {
+        this.taskHandler = taskHandler;
+    }
+
     @Override
-    protected String doInBackground(Pair<Context, TaskHandler>... params) {
+    protected String doInBackground(Void... voids) {
         if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -37,8 +38,6 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, TaskHandler>, Void, S
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        taskHandler = params[0].second;
 
         try {
             return myApiService.getJoke().execute().getData();
@@ -46,6 +45,7 @@ public class JokeAsyncTask extends AsyncTask<Pair<Context, TaskHandler>, Void, S
             return e.getMessage();
         }
     }
+
 
     @Override
     protected void onPostExecute(String result) {

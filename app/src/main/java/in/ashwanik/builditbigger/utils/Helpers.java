@@ -3,8 +3,6 @@ package in.ashwanik.builditbigger.utils;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,11 +17,6 @@ import in.ashwanik.builditbigger.common.BaseApplication;
  * Created by AshwaniK on 2/28/2016.
  */
 public class Helpers {
-    public static void recyclerAnim(View view) {
-        YoYo.with(Techniques.FadeIn)
-                .duration(500)
-                .playOn(view);
-    }
 
     public static double roundTwoDecimals(double d) {
         DecimalFormat twoDForm = new DecimalFormat("#.#");

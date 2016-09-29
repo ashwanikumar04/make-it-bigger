@@ -1,8 +1,7 @@
 package in.ashwanik.builditbigger.fragments;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import butterknife.ButterKnife;
 import in.ashwanik.builditbigger.JokeAsyncTask;
 import in.ashwanik.builditbigger.R;
 import in.ashwanik.builditbigger.TaskHandler;
+import in.ashwanik.jokeui.JokeActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -34,13 +34,17 @@ public class MainActivityFragment extends BaseFragment {
         btnJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new JokeAsyncTask()
-                        .execute(new Pair<Context, TaskHandler>(getActivity(), new TaskHandler() {
-                            @Override
-                            public void onComplete(String data) {
+                showProgress(getProgressDialog());
+                new JokeAsyncTask(new TaskHandler() {
+                    @Override
+                    public void onComplete(String data) {
+                        hideProgress(getProgressDialog());
+                        Intent intent = new Intent(getActivity(), JokeActivity.class);
+                        intent.putExtra("joke", data);
+                        startActivity(intent);
 
-                            }
-                        }));
+                    }
+                }).execute();
             }
         });
 
