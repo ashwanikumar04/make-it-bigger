@@ -8,7 +8,6 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import in.ashwanik.builditbigger.R;
-import in.ashwanik.builditbigger.fragments.MainActivityFragment;
 
 public class MainActivity extends BaseActivity {
 

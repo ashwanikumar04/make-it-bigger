@@ -42,6 +42,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        free {
+            applicationId "in.ashwanik.builditbigger.free"
+        }
+
+        paid {
+            applicationId "in.ashwanik.builditbigger.paid"
+        }
+    }
+    sourceSets {
+        free {
+            manifest.srcFile 'src/free/AndroidManifest.xml'
+            java.srcDirs = ['src/free/java', 'src/free/java/']
+
+        }
+        paid {
+            manifest.srcFile 'src/paid/AndroidManifest.xml'
+            java.srcDirs = ['src/paid/java', 'src/paid/java/']
+        }
+    }
+
     testOptions {
         unitTests.returnDefaultValues = true
     }
@@ -71,7 +93,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
+    freeCompile 'com.google.firebase:firebase-ads:9.6.0'
     compile project(':joke-ui')
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
@@ -84,3 +106,6 @@ dependencies {
     compile project(path: ':backend', configuration: 'android-endpoints')
 
 }
+
+
+apply plugin: 'com.google.gms.google-services'
