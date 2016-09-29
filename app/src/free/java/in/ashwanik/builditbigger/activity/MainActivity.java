@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setToolBar(false);
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-9385813054090636~5473556102");
+        MobileAds.initialize(getApplicationContext(), "<AD User Id>");
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, new MainActivityFragment(), "TAG_FRAGMENT");
         ft.commitAllowingStateLoss();
