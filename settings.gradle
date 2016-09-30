@@ -1,1 +1,0 @@
-include ':app', ':joke-lib', ':joke-ui', ':backend'
